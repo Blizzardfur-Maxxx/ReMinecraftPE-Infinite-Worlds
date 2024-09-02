@@ -455,6 +455,22 @@ bool Level::hasNeighborSignal(int x, int y, int z)
 	if (getSignal(x + 1, y, z, DIR_XPOS)) return true;
 	return false;
 }
+#ifdef INFWORLDS
+
+std::vector<LevelChunk*> Level::getLoadedChunks() {
+	std::vector<LevelChunk*> loadedChunks;
+
+	if (m_pChunkSource) {
+		ChunkCache* cache = dynamic_cast<ChunkCache*>(m_pChunkSource);
+		if (cache) {
+			loadedChunks = cache->getLoadedChunks();
+		}
+	}
+
+	return loadedChunks;
+}
+
+#endif // INFWORLDS
 
 bool Level::hasChunkAt(int gx, int gy, int gz)
 {

@@ -136,6 +136,34 @@ int LocalPlayer::move(float x, float y, float z)
 	LocalPlayer* pLP = m_pMinecraft->m_pLocalPlayer;
 	if (Minecraft::DEADMAU5_CAMERA_CHEATS && pLP == this && m_pMinecraft->getOptions()->m_bFlyCheat)
 	{
+#ifdef ALTFLYHACK
+		if (m_nAutoJumpFrames > 0)
+		{
+			m_nAutoJumpFrames--;
+			m_pMoveInput->m_bJumpButton = true;
+		}
+
+		float posX = m_pos.x;
+		float posY = m_pos.y;
+		if (m_pMinecraft->getOptions()->m_bFlyCheat) { // vl0ds fly hack thing
+			if (y < 0.0f) {
+				y = 0.0f;
+			}
+
+			x *= 5.0f;
+			z *= 5.0f;
+
+			if (m_pMoveInput->m_bJumpButton) {
+				y += 0.5f;
+			}
+			if (m_pMoveInput->m_bSneakButton) {
+				y -= 0.5f;
+			}
+			result = Entity::move(x, y, z);
+
+	}
+#endif // ALTFLYHACK
+
 		//@HUH: Using m_pMinecraft->m_pLocalPlayer instead of this, even though they're the same
 		pLP->m_bNoCollision = true;
 
