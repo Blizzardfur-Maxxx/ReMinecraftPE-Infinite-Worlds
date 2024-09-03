@@ -19,9 +19,13 @@ class ChunkCache : public ChunkSource
 {
 public:
 	ChunkCache(Level*, ChunkStorage*, ChunkSource*);
+#ifdef INFWORLDS;
+	std::vector<LevelChunk*> getLoadedChunks();
+#endif // INFWORLDS
 #ifdef INFWORLDS
 	~ChunkCache() override;
-	std::vector<LevelChunk*> getLoadedChunks();
+#else
+	virtual ~ChunkCache();
 #endif // INFWORLDS
 	LevelChunk* create(int x, int z) override;
 	LevelChunk* getChunk(int x, int z) override;

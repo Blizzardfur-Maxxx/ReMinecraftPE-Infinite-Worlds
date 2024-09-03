@@ -408,7 +408,7 @@ ChunkCache::~ChunkCache()
 				delete m_chunkMap[i][j];
 			}
 		}
-#endif // INFWORLDS
+#else // INFWORLDS
 
 	SAFE_DELETE(m_pChunkSource);
 	SAFE_DELETE(m_pEmptyChunk);
@@ -423,6 +423,7 @@ ChunkCache::~ChunkCache()
 				SAFE_DELETE(pChk);
 			}
 		}
+#endif
 }
 
 LevelChunk* ChunkCache::load(int x, int z)
