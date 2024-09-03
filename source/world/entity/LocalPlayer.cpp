@@ -162,7 +162,7 @@ int LocalPlayer::move(float x, float y, float z)
 			result = Entity::move(x, y, z);
 
 	}
-#endif // ALTFLYHACK
+#else // ALTFLYHACK
 
 		//@HUH: Using m_pMinecraft->m_pLocalPlayer instead of this, even though they're the same
 		pLP->m_bNoCollision = false;
@@ -179,6 +179,7 @@ int LocalPlayer::move(float x, float y, float z)
 		pLP->field_7C = true;
 
 		field_94 = field_94_old;
+#endif
 	}
 	else
 	{
