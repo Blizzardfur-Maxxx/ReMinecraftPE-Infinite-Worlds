@@ -562,7 +562,7 @@ void RandomLevelSource::postProcess(ChunkSource* src, int x, int z)
 
 			if (SNOW_CUTOFF > (tempBlock[i24 * 16 + j25] - SNOW_SCALE * (float(tsb - 64) / 64.0f)))
 			{
-				if (tsb >= 0 && tsb < C_MAX_Y && m_pLevel->isEmptyTile(j19, tsb, j22))
+				if (tsb >= 0 && tsb < C_MAX_Y && m_pLevel->isEmptyTile(j19, tsb, j22))   // DISSABLED ALL THIS CODE IN INFINITE AS IT SEEMS TO JUST CRASH EVERYTHING IF getTopSolidBlock IS CALLED FROM IT AND IM NOT SURE HOW TO FIX
 				{
 					if (m_pLevel->getMaterial(j19, tsb - 1, j22)->blocksMotion() &&
 						m_pLevel->getMaterial(j19, tsb - 1, j22) != Material::ice)
