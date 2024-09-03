@@ -41,7 +41,11 @@ void Options::_initDefaultValues()
 	field_0   = 1.0f;
 	field_23E = 0;
 	m_fMasterVolume = 1.0f;
+#ifdef ALTFLYHACK
 	m_bFlyCheat = true;
+#else // ALTFLYHACK
+	m_bFlyCheat = false;
+#endif
 	field_241 = 0;
 	field_8   = 0.5f;
 	field_24C = 0;
