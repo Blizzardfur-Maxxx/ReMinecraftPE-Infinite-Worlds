@@ -165,7 +165,7 @@ int LocalPlayer::move(float x, float y, float z)
 #endif // ALTFLYHACK
 
 		//@HUH: Using m_pMinecraft->m_pLocalPlayer instead of this, even though they're the same
-		pLP->m_bNoCollision = true;
+		pLP->m_bNoCollision = false;
 
 		float field_94_old = field_94;
 

@@ -763,6 +763,34 @@ bool Tile::shouldRenderFace(LevelSource* pSrc, int x, int y, int z, int dir)
 {
 	//if ((y | x | z) > C_MAX_CHUNKS_Z * 16)
 	//	return false;
+#ifdef INFWORLDS
+	switch (dir)
+	{
+	case DIR_ZNEG:
+		if (z == -1) return false;
+		if (m_aabb.min.z > 0.0f) return true;
+		break;
+	case DIR_ZPOS:
+		if (z == C_MAX_CHUNKS_Z * 16) return true; //this fixes a render bug
+		if (m_aabb.max.z < 1.0f) return true;
+		break;
+	case DIR_XNEG:
+		if (x == -1) return false;
+		if (m_aabb.min.x > 0.0f) return true;
+		break;
+	case DIR_XPOS:
+		if (x == C_MAX_CHUNKS_X * 16) return true; //this fixes a render bug
+		if (m_aabb.max.x < 1.0f) return true;
+		break;
+	case DIR_YNEG:
+		if (y == -1) return false;
+		if (m_aabb.min.y > 0.0f) return true;
+		break;
+	case DIR_YPOS:
+		if (m_aabb.max.y < 1.0f) return true;
+		break;
+	}
+#endif // INFWORLDS
 
 	switch (dir)
 	{
