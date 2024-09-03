@@ -45,7 +45,7 @@
 #define ENH_ALLOW_SCROLL_WHEEL  // Allow use of the scroll wheel to change selected inventory slots
 #define ENH_3D_INVENTORY_TILES  // Uses 3D rendered inventory tiles, use with ENH_SHADE_HELD_TILES to render correctly.
 #define ENH_IMPROVED_SAVING     // Improve world saving. The original Minecraft doesn't always really save for some reason
-#define ALTFLYHACK //A PERSONALY BETTER FLYHACK IN MY OPINION
+#define ALTFLYHACK				//A PERSONALY BETTER FLYHACK IN MY OPINION
 
 
 // Toggle Demo Mode
