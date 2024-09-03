@@ -286,8 +286,12 @@ int ChunkCache::tick()
 	return m_pChunkSource->tick();
 }
 
+
 void ChunkCache::postProcess(ChunkSource* pChkSrc, int x, int z)
 {
+	if (x < 0 || z < 0 || x >= C_MAX_CHUNKS_X || z >= C_MAX_CHUNKS_Z)
+		return;
+
 	LevelChunk* pChunk = getChunk(x, z);
 	if (!pChunk->field_234)
 	{

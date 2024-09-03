@@ -286,22 +286,10 @@ int ChunkCache::tick()
 	return m_pChunkSource->tick();
 }
 
+
 void ChunkCache::postProcess(ChunkSource* pChkSrc, int x, int z)
 {
-#ifdef INFWORLDS
-	LevelChunk* chunk = getChunk(x, z);
-	if (!chunk->field_234)
-	{
-		chunk->field_234 = 1;
-		if (m_pChunkSource)
-		{
-			m_pChunkSource->postProcess(m_pChunkSource, x, z);
-			chunk->clearUpdateMap();
-		}
-	}
-#endif // INFWORLDS
-
-	if (x < 0 || z < 0 || x >= C_MAX_CHUNKS_X || z >= C_MAX_CHUNKS_Z)
+	if (x < 0 || z < 0 || x >= 1000000 || z >= 1000000)
 		return;
 
 	LevelChunk* pChunk = getChunk(x, z);
