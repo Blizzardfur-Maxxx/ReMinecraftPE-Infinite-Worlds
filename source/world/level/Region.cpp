@@ -89,12 +89,18 @@ int Region::getData(int x, int y, int z)
 Material* Region::getMaterial(int x, int y, int z)
 {
 	TileID tile = getTile(x, y, z);
-	
+
 	if (tile == TILE_AIR)
 		return Material::air;
 
-	return Tile::tiles[tile]->m_pMaterial;
+	Tile* pTile = Tile::tiles[tile];
+
+	if (pTile == nullptr)
+		return Material::air;
+
+	return pTile->m_pMaterial;
 }
+
 
 bool Region::isSolidTile(int x, int y, int z)
 {

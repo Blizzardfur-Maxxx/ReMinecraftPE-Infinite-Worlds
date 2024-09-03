@@ -167,15 +167,19 @@ void Chunk::rebuild()
 
 					Tile* pTile = Tile::tiles[tile];
 
-					if (layer == pTile->getRenderLayer())
+					if (pTile != nullptr)
 					{
-						if (tileRenderer.tesselateInWorld(pTile, x, y, z))
-							bDrewThisLayer = true;
+						if (layer == pTile->getRenderLayer())
+						{
+							if (tileRenderer.tesselateInWorld(pTile, x, y, z))
+								bDrewThisLayer = true;
+						}
+						else
+						{
+							bNeedAnotherLayer = true;
+						}
 					}
-					else
-					{
-						bNeedAnotherLayer = true;
-					}
+
 				}
 			}
 		}
