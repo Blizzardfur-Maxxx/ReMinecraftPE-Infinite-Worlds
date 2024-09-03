@@ -289,8 +289,21 @@ int ChunkCache::tick()
 
 void ChunkCache::postProcess(ChunkSource* pChkSrc, int x, int z)
 {
+#ifndef INFWORLDS
 	if (x < 0 || z < 0 || x >= C_MAX_CHUNKS_X || z >= C_MAX_CHUNKS_Z)
 		return;
+
+	LevelChunk* pChunk = getChunk(x, z);
+	if (!pChunk->field_234)
+	{
+		pChunk->field_234 = 1;
+		if (m_pChunkSource)
+		{
+			m_pChunkSource->postProcess(m_pChunkSource, x, z);
+			pChunk->clearUpdateMap();
+		}
+	}
+#endif // !INFWORLDS
 
 	LevelChunk* pChunk = getChunk(x, z);
 	if (!pChunk->field_234)
