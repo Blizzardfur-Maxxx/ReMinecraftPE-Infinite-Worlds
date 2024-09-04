@@ -248,7 +248,8 @@ bool ChunkCache::hasChunk(int x, int z)
 	int chunkX = x & (CHUNK_CACHE_WIDTH - 1);
 	int chunkZ = z & (CHUNK_CACHE_WIDTH - 1);
 	LevelChunk* chunk = m_chunkMap[chunkZ][chunkX];
-	if (!chunk) {
+
+	if (chunk == nullptr) {
 		return false;
 	}
 
@@ -385,6 +386,19 @@ void ChunkCache::saveUnsaved()
 
 	std::vector<LevelChunk*> chunksToSave;
 
+#ifdef INFWORLDS
+	for (int i = 0; i < CHUNK_CACHE_WIDTH; i++)
+	{
+		for (int j = 0; j < CHUNK_CACHE_WIDTH; j++)
+		{
+			LevelChunk* pChunk = m_chunkMap[i][j];
+			if (pChunk && pChunk != m_pEmptyChunk && pChunk->m_bUnsaved)
+			{
+				chunksToSave.push_back(pChunk);
+			}
+		}
+	}
+#else
 	for (int i = 0; i < C_MAX_CHUNKS_Z; i++)
 	{
 		for (int j = 0; j < C_MAX_CHUNKS_X; j++)
@@ -396,11 +410,13 @@ void ChunkCache::saveUnsaved()
 			chunksToSave.push_back(pChunk);
 		}
 	}
+#endif
 
 	m_pChunkStorage->saveAll(m_pLevel, chunksToSave);
 }
 
 #endif
+
 
 bool ChunkCache::shouldSave()
 {

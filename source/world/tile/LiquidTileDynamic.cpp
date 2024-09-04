@@ -185,7 +185,8 @@ void LiquidTileDynamic::trySpreadTo(Level* level, int x, int y, int z, int data)
 		return;
 
 	TileID tile = level->getTile(x, y, z);
-	if (tile > 0)
+
+	if (tile > 0 && Tile::tiles[tile] != nullptr)
 	{
 		if (m_pMaterial == Material::lava)
 		{
@@ -199,6 +200,7 @@ void LiquidTileDynamic::trySpreadTo(Level* level, int x, int y, int z, int data)
 
 	level->setTileAndData(x, y, z, m_ID, data);
 }
+
 
 // @NOTE: This is inlined in PE.
 int LiquidTileDynamic::getSmallestDepth(Level* level, int x, int y, int z, int oldDepth)

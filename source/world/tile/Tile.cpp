@@ -767,7 +767,7 @@ bool Tile::shouldRenderFace(LevelSource* pSrc, int x, int y, int z, int dir)
 	switch (dir)
 	{
 	case DIR_ZNEG:
-		if (z == -1) return false;
+		if (z == -1) return true;
 		if (m_aabb.min.z > 0.0f) return true;
 		break;
 	case DIR_ZPOS:
@@ -775,7 +775,7 @@ bool Tile::shouldRenderFace(LevelSource* pSrc, int x, int y, int z, int dir)
 		if (m_aabb.max.z < 1.0f) return true;
 		break;
 	case DIR_XNEG:
-		if (x == -1) return false;
+		if (x == -1) return true;
 		if (m_aabb.min.x > 0.0f) return true;
 		break;
 	case DIR_XPOS:
@@ -783,7 +783,7 @@ bool Tile::shouldRenderFace(LevelSource* pSrc, int x, int y, int z, int dir)
 		if (m_aabb.max.x < 1.0f) return true;
 		break;
 	case DIR_YNEG:
-		if (y == -1) return false;
+		if (y == -1) return true;
 		if (m_aabb.min.y > 0.0f) return true;
 		break;
 	case DIR_YPOS:
