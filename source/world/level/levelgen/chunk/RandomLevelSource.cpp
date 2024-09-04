@@ -554,10 +554,7 @@ void RandomLevelSource::postProcess(ChunkSource* src, int x, int z)
 			int i24 = j19 - (x16 + 8);
 			int j25 = j22 - (z16 + 8);
 
-#ifdef INFWORLDS
 
-			}
-#else // INFWORLDS
 			int tsb = m_pLevel->getTopSolidBlock(j19, j22);
 
 			if (SNOW_CUTOFF > (tempBlock[i24 * 16 + j25] - SNOW_SCALE * (float(tsb - 64) / 64.0f)))
@@ -572,7 +569,6 @@ void RandomLevelSource::postProcess(ChunkSource* src, int x, int z)
 				}
 			}
 		}
-#endif
 	}
 
 	SandTile::instaFall = false;
