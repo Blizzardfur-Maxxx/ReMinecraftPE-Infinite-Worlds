@@ -39,6 +39,8 @@ bool LiquidTileDynamic::checkSpongesNearby(Level* level, int x, int y, int z)
 bool LiquidTileDynamic::isWaterBlocking(Level* level, int x, int y, int z)
 {
 	TileID tile = level->getTile(x, y, z);
+
+	// Check for special tile cases
 	if (tile == Tile::reeds->m_ID)
 		return true;
 
@@ -51,17 +53,26 @@ bool LiquidTileDynamic::isWaterBlocking(Level* level, int x, int y, int z)
 	if (!tile)
 		return false;
 
-	return Tile::tiles[tile]->m_pMaterial->isSolid();
+	Material* pMtl = (Tile::tiles[tile] != nullptr) ? Tile::tiles[tile]->m_pMaterial : Material::stone;
+
+	return pMtl->isSolid();
 }
+
 
 bool LiquidTileDynamic::canSpreadTo(Level* level, int x, int y, int z)
 {
 	Material* pMtl = level->getMaterial(x, y, z);
+
+	if (pMtl == nullptr) {
+		pMtl = Material::stone;
+	}
+
 	if (pMtl == m_pMaterial || pMtl == Material::lava)
 		return false;
 
 	return !isWaterBlocking(level, x, y, z);
 }
+
 
 int LiquidTileDynamic::getSlopeDistance(Level* level, int x, int y, int z, int depth, int a7)
 {

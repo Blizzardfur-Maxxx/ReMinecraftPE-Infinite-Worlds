@@ -34,7 +34,7 @@
 #define ENH_ALLOW_AO            // Allows using the F4 key to toggle ambient occlusion (buggy)
 #define ENH_TRANSPARENT_HOTBAR  // Allows the hotbar to be transparent. Due to a bug in the code, it is not.
 #define ENH_CAMERA_NO_PARTICLES // Hide particles from the view of a camera, such as smoke, that would otherwise render the resulting image useless.
-#define ENH_USE_JAVA_LIGHT_RAMP // Use Java Beta 1.3 light ramp instead of flawed PE one
+//#define ENH_USE_JAVA_LIGHT_RAMP // Use Java Beta 1.3 light ramp instead of flawed PE one
 #define ENH_RUN_DAY_NIGHT_CYCLE // Allow the day/night cycle to run.
 #define ENH_USE_OWN_AO          // Use own ambient occlusion engine - looks pretty much the same except it fixes the corners
 #define ENH_ADD_OPTIONS_PAUSE   // Add an 'options' button in the pause menu
