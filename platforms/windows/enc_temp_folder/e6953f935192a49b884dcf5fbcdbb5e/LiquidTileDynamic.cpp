@@ -40,6 +40,7 @@ bool LiquidTileDynamic::isWaterBlocking(Level* level, int x, int y, int z)
 {
 	TileID tile = level->getTile(x, y, z);
 
+	// Check for special tile cases
 	if (tile == Tile::reeds->m_ID)
 		return true;
 
@@ -49,10 +50,12 @@ bool LiquidTileDynamic::isWaterBlocking(Level* level, int x, int y, int z)
 			return true;
 	}
 
-	if (!tile || Tile::tiles[tile] == nullptr)
+	if (!tile)
 		return false;
 
-	return Tile::tiles[tile]->m_pMaterial->isSolid();
+	Material* pMtl = (Tile::tiles[tile] != nullptr) ? Tile::tiles[tile]->m_pMaterial : Material::stone;
+
+	return pMtl->isSolid();
 }
 
 
@@ -60,8 +63,9 @@ bool LiquidTileDynamic::canSpreadTo(Level* level, int x, int y, int z)
 {
 	Material* pMtl = level->getMaterial(x, y, z);
 
-	if (pMtl == nullptr)
-		return false;
+	if (pMtl == nullptr) {
+		pMtl = Material::stone;
+	}
 
 	if (pMtl == m_pMaterial || pMtl == Material::lava)
 		return false;

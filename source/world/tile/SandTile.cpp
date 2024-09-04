@@ -70,11 +70,13 @@ bool SandTile::isFree(Level* level, int x, int y, int z)
 	if (tile == Tile::fire->m_ID)
 		return true;
 
-	if (Tile::tiles[tile]->m_pMaterial == Material::water)
-		return true;
+	if (Tile::tiles[tile] != nullptr) {
+		if (Tile::tiles[tile]->m_pMaterial == Material::water)
+			return true;
 
-	if (Tile::tiles[tile]->m_pMaterial == Material::lava)
-		return true;
+		if (Tile::tiles[tile]->m_pMaterial == Material::lava)
+			return true;
+	}
 
 	return false;
 }
